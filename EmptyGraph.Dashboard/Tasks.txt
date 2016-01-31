@@ -1,0 +1,10 @@
+﻿Determine routing
+- MVC
+- Something easier to use and understand?
+
+Determine how we are going to get the data to the client
+- try getting JSON back from service
+- parsing into object
+- using to drive screen
+- go with angular
+- data on client will eliminate round trips

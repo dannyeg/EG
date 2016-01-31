@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Empty Graph: Communication</title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="controller.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="dashboardController" ng-init="init()">
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-target=".sidebar-collapse" data-toggle="collapse" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="analytics.html">Empty Graph</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.dropdown -->
+        </nav>
+
+        <!--Left Menu-->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul id="main-menu" class="nav">
+                    <li><a class="active-menu" href="analytics.html"><i class="fa fa-dashboard"></i> Analytics</a></li>
+                    <li><a href="retention.html"><i class="fa fa-sitemap"></i> Customer Retention</a></li>
+                    <li><a href="communication.html"><i class="fa fa-edit"></i> Communication</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!--Left.Menu-->
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">Analytics<small></small></h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+                <div class="col-md-14">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><!--Pill Tabs--></div>
+                        <div class="panel-body">
+                            <ul class="nav nav-pills">
+                                <!--<li class="active"><a data-toggle="tab" href="#overview-pills"><i class="glyphicon glyphicon-th-large"></i>Overview</a></li>-->
+                                <li class="active"><a data-toggle="tab" href="#users-pills"><i class="glyphicon glyphicon-user"></i>Users</a></li>
+                                <li class=""><a data-toggle="tab" href="#logins-pills"><i class="fa fa-sign-in"></i>Logins</a></li>
+                                <li class=""><a data-toggle="tab" href="#likes-pills"><i class="fa fa-thumbs-o-up"></i>Likes</a></li>
+                            </ul>
+
+
+                            <!--Start of Overview-->
+                            <div class="tab-content">
+
+                                <!--
+                                     <div id="overview-pills" class="tab-pane fade active in">
+                                     <h4>Overview</h4>
+                                     <p>Lorem ui officia deserunt mollit anim id est laborum.</p>
+                                     <p>Lorem ui officia deserunt mollit anim id est laborum.</p>
+
+                                </div>-->
+                                <!--End of Overview-->
+                                <!--Start of Users-->           <p></p>
+                                <div id="users-pills" class="tab-pane fade active in">
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                                            <div class="panel-body">
+                                                <i class="fa fa-users fa-5x"></i>
+                                                <h3>{{ totalUserCount | number }}</h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-green">Unique Customers</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-female fa-5x"></i>
+                                                <h3>{{ totalFemaleCount | number }}</h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Female</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-male fa-5x"></i>
+                                                <h3>{{ totalMaleCount | number }}</h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Male</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-globe fa-5x"></i>
+                                                <!--<i class="fa fa-question-circle fa-5x"></i>-->
+                                                <h3>{{ totalConnectionCount | number }}</h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Connections</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Demographic: Age</div>
+                                            <div class="panel-body">
+                                                <div id="analytics-demoAge-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Timezones
+                                            </div>
+                                            <div class="panel-body">
+                                                <div id="analytics-timezone-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- Advanced Tables -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <button class="btn btn-primary btn-sm" data-target="#myModal" data-toggle="modal">
+                                                        Edit User Information
+                                                    </button>
+
+                                                    <div id="myModal" aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" role="dialog" tabindex="-1">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                                                                    <h4 id="myModalLabel" class="modal-title">Edit User Information</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+
+                                                                    <div class="form-group">
+                                                                        <label for="disabledSelect">Name</label>
+                                                                        <input id="disabledInput" class="form-control" disabled="" placeholder="Joe Voelz" type="text" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="disabledSelect">Gender</label>
+                                                                        <input id="disabledInput" class="form-control" disabled="" placeholder="Male" type="text" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="disabledSelect">Age Range</label>
+                                                                        <input id="disabledInput" class="form-control" disabled="" placeholder="25-35" type="text" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="disabledSelect">Timezone</label>
+                                                                        <input id="disabledInput" class="form-control" disabled="" placeholder="Central" type="text" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="disabledSelect">Verified</label>
+                                                                        <input id="disabledInput" class="form-control" disabled="" placeholder="True" type="text" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Primary Email</label>
+                                                                        <input class="form-control" placeholder="Enter text" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Primary Phone #</label>
+                                                                        <input class="form-control" placeholder="Enter text" />
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label>Twitter Handle</label>
+                                                                        <input class="form-control" placeholder="Enter text" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                                                                    <button class="btn btn-primary" type="button">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table id="dataTables-example" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>User</th>
+                                                                    <th>Gender</th>
+                                                                    <th>Age Range</th>
+                                                                    <th>Timezone</th>
+                                                                    <th>Connections</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!--<tr class="odd gradeX">
+                                                                    <td>Joe Voelz</td>
+                                                                    <td>Male</td>
+                                                                    <td>25-35</td>
+                                                                    <td class="center">Central</td>
+                                                                    <td class="center">517</td>
+                                                                </tr>
+                                                            <tr class="even gradeC">
+                                                                <td>Dan Reynolds</td>
+                                                                <td>Male</td>
+                                                                <td>35-44</td>
+                                                                <td class="center">Central</td>
+                                                                <td class="center">139</td>
+                                                            </tr>-->
+                                                            <tr ng-repeat="user in Users" ng-class-odd="'odd gradeX'" ng-class-even="'even gradeC'">
+                                                                <td>{{ user.name }}</td>
+                                                                <td>{{ user.gender }}</td>
+                                                                <td>{{ user.age_range }}</td>
+                                                                <td class="center">{{ user.timezone }}</td>
+                                                                <td class="center">1200</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--End Advanced Tables -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End of Users-->
+                                <!--Start of Logins-->
+                                <div id="logins-pills" class="tab-pane fade">
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                                            <div class="panel-body">
+                                                <i class="fa fa-sign-in fa-5x"></i>
+                                                <h3>36,752</h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-green">Total Logins</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-info-circle fa-5x"></i>
+                                                <h3>21 </h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Average Per User</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-info-circle fa-5x"></i>
+                                                <h3>9,188 </h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">6 Months</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-info-circle fa-5x"></i>
+                                                <h3>16,564 </h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">1 Year</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class='col-sm-3'>
+                                            From:
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class='col-sm-3'>
+                                            To:
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    Login Frequency
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div id="analytics-loginFrequency-chart"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table id="dataTables-example2" class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User</th>
+                                                            <th>Total (per user)</th>
+                                                            <th>Last Login</th>
+                                                            <th>First Login</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="odd gradeX">
+                                                            <td>Joe Voelz</td>
+                                                            <td>75</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">12/01/2010</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Dan Reynolds</td>
+                                                            <td>5</td>
+                                                            <td>12/01/2014</td>
+                                                            <td class="center">12/01/2014</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Dana Bryson</td>
+                                                            <td>15</td>
+                                                            <td>11/01/2015</td>
+                                                            <td class="center">12/01/2011</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Michelle Schelp</td>
+                                                            <td>115</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Jim Voelz</td>
+                                                            <td>35</td>
+                                                            <td>11/21/2015</td>
+                                                            <td class="center">11/01/2014</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Jake Thoele</td>
+                                                            <td>5</td>
+                                                            <td>09/01/2015</td>
+                                                            <td class="center">10/01/2014</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>J.J Thoele</td>
+                                                            <td>15</td>
+                                                            <td>09/11/2015</td>
+                                                            <td class="center">02/10/2013</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Jon Gridley</td>
+                                                            <td>215</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Krystin Gridley</td>
+                                                            <td>115</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Tony Maurer</td>
+                                                            <td>115</td>
+                                                            <td>05/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Josh Boldt</td>
+                                                            <td>75</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">12/01/2010</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Josh Will</td>
+                                                            <td>5</td>
+                                                            <td>12/01/2014</td>
+                                                            <td class="center">12/01/2014</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Ashley Thomas</td>
+                                                            <td>15</td>
+                                                            <td>11/01/2015</td>
+                                                            <td class="center">12/01/2011</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Kristin Connolly</td>
+                                                            <td>115</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Pat Morse</td>
+                                                            <td>35</td>
+                                                            <td>11/21/2015</td>
+                                                            <td class="center">11/01/2014</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Valentina Vergati</td>
+                                                            <td>5</td>
+                                                            <td>09/01/2015</td>
+                                                            <td class="center">10/01/2014</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Sharon Lampron</td>
+                                                            <td>15</td>
+                                                            <td>09/11/2015</td>
+                                                            <td class="center">02/10/2013</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Jessica Ann</td>
+                                                            <td>215</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Matthew Babcock</td>
+                                                            <td>115</td>
+                                                            <td>12/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                        <tr class="odd gradeX">
+                                                            <td>Emily Sullivan</td>
+                                                            <td>115</td>
+                                                            <td>05/01/2015</td>
+                                                            <td class="center">07/01/2012</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--End of Logins-->
+                                <!--Start of Likes-->
+                                <div id="likes-pills" class="tab-pane fade">
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                                            <div class="panel-body">
+                                                <i class="fa fa-thumbs-up fa-5x"></i>
+                                                <h3>36,752</h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-green">Total Likes</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-info-circle fa-5x"></i>
+                                                <h3>21 </h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Average Per User</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-female fa-5x"></i>
+                                                <h3>Pinterest </h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Female - Top Category</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                            <div class="panel-body">
+                                                <i class="fa fa-male fa-5x"></i>
+                                                <h3>SportsCenter </h3>
+                                            </div>
+                                            <div class="panel-footer back-footer-blue">Male - Top Category</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Competition</div>
+                                            <div class="panel-body">
+                                                <div id="analytics-categoryComp-chart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Top 5 Categories
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="list-group">
+
+                                                    <a href="#" class="list-group-item">
+                                                        <span class="badge">32,752</span>
+                                                        <i class="fa fa fa-pinterest"></i> Pinterest
+                                                    </a>
+                                                    <a href="#" class="list-group-item">
+                                                        <span class="badge">16,866</span>
+                                                        <i class="fa fa-star"></i> SportsCenter
+                                                    </a>
+                                                    <a href="#" class="list-group-item">
+                                                        <span class="badge">3,633</span>
+                                                        <i class="fa fa-facebook-official"></i> Facebook
+                                                    </a>
+                                                    <a href="#" class="list-group-item">
+                                                        <span class="badge">1,954</span>
+                                                        <i class="fa fa-star"></i> Adele
+                                                    </a>
+                                                    <a href="#" class="list-group-item">
+                                                        <span class="badge">1,155</span>
+                                                        <i class="fa fa-yelp"></i> Yelp
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table id="dataTables-example3" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>User</th>
+                                                        <th>Total (per user)</th>
+                                                        <th>Our Company</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="odd gradeX">
+                                                        <td>Joe Voelz</td>
+                                                        <td>5</td>
+                                                        <td>True</td>
+                                                        <td class="center">12/01/2010</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Dan Reynolds</td>
+                                                        <td>2</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Dana Bryson</td>
+                                                        <td>115</td>
+                                                        <td>True</td>
+                                                        <td class="center">12/01/2011</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Michelle Schelp</td>
+                                                        <td>45</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Jim Voelz</td>
+                                                        <td>35</td>
+                                                        <td>True</td>
+                                                        <td class="center">11/01/2014</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Jake Thoele</td>
+                                                        <td>225</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>J.J Thoele</td>
+                                                        <td>150</td>
+                                                        <td>True</td>
+                                                        <td class="center">02/10/2013</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Jon Gridley</td>
+                                                        <td>215</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Krystin Gridley</td>
+                                                        <td>315</td>
+                                                        <td>True</td>
+                                                        <td class="center">07/01/2012</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Tony Maurer</td>
+                                                        <td>115</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Josh Boldt</td>
+                                                        <td>75</td>
+                                                        <td>True</td>
+                                                        <td class="center">12/01/2010</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Josh Will</td>
+                                                        <td>59</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Ashley Thomas</td>
+                                                        <td>465</td>
+                                                        <td>True</td>
+                                                        <td class="center">12/01/2011</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Kristin Connolly</td>
+                                                        <td>115</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Pat Morse</td>
+                                                        <td>35</td>
+                                                        <td>True</td>
+                                                        <td class="center">11/01/2014</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Valentina Vergati</td>
+                                                        <td>97</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Sharon Lampron</td>
+                                                        <td>85</td>
+                                                        <td>True</td>
+                                                        <td class="center">02/10/2013</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Jessica Ann</td>
+                                                        <td>615</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Matthew Babcock</td>
+                                                        <td></td>
+                                                        <td>True</td>
+                                                        <td class="center">07/01/2012</td>
+                                                    </tr>
+                                                    <tr class="odd gradeX">
+                                                        <td>Emily Sullivan</td>
+                                                        <td>345</td>
+                                                        <td>False</td>
+                                                        <td class="center">-</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                        <!--End of Likes-->
+
+
+                    </div>
+                    <footer></footer>
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+        <!-- JS Scripts-->
+        <!-- jQuery Js -->
+        <script src="assets/js/jquery-1.10.2.js"></script>
+        <!-- Bootstrap Js -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Js -->
+        <script src="assets/js/jquery.metisMenu.js"></script>
+        <!-- Morris Chart Js -->
+        <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+        <script src="assets/js/morris/morris.js"></script>
+        <!-- DATA TABLE SCRIPTS -->
+        <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+        <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                //$scope.getData();
+                $('#dataTables-example').dataTable();
+                $('#dataTables-example2').dataTable();
+                $('#dataTables-example3').dataTable();
+            });
+        </script>
+
+        <!-- Custom Js -->
+        <script src="assets/js/custom-scripts.js"></script>
+    </div>
+    
+</body>
+</html>
